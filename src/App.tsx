@@ -4,14 +4,14 @@ import "./App.css";
 // import TodoList from "./components/todoList";
 import Product from "./components/product/product";
 import TodoPage from "./components/todo/todoApp";
-// import AppScreen from "./components/app";
+import AppScreen from "./components/app";
 
 function App() {
   return (
     <div>
       <div>
         <Routes>
-          {/* <Route path="/" element={<AppScreen />} /> */}
+          <Route path="/" element={<AppScreen />} />
           <Route path="/product" element={<Product />} />
           <Route path="/todo" element={<TodoPage />} />
         </Routes>
