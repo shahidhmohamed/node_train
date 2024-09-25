@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { Route, Router, Routes } from "react-router-dom";
 import "./App.css";
-import Form from "./components/form";
+// import Form from "./components/form";
+// import TodoList from "./components/todoList";
+import Product from "./components/product/product";
+import TodoPage from "./components/todo/todoApp";
+import AppScreen from "./components/app";
 
 function App() {
   return (
     <div>
-      <Form />
+      <div>
+        <Routes>
+          <Route path="/" element={<AppScreen />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/todo" element={<TodoPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }
