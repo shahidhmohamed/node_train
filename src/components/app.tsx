@@ -1,8 +1,5 @@
 import React from "react";
 import { FaBoxOpen, FaTasks } from "react-icons/fa";
-import { FaArrowsTurnToDots } from "react-icons/fa6";
-import { FcSalesPerformance } from "react-icons/fc";
-import { MdInventory } from "react-icons/md";
 import bg from ".//bg_2.mp4";
 import { TbMathSymbols } from "react-icons/tb";
 
