@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 // import Form from "./components/form";
 // import TodoList from "./components/todoList";
-import Product from "./pages/product/product";
-import TodoPage from "./pages/todo/todoApp";
+import Product from "./components/product/product";
+import TodoPage from "./components/todo/todoApp";
 import AppScreen from "./components/app";
 
 function App() {

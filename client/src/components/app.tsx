@@ -2,25 +2,26 @@ import React from "react";
 import { FaBoxOpen, FaTasks } from "react-icons/fa";
 import bg from ".//bg_2.mp4";
 import { TbMathSymbols } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const apps = [
   {
     id: 1,
     name: "Inventory",
     icon: <FaBoxOpen className="text-black" />,
-    path: "/product",
+    path: <Link to="/product" />,
   },
   {
     id: 2,
     name: "Todo",
     icon: <FaTasks className="text-black" />,
-    path: "/todo",
+    path: <Link to="/todo" />,
   },
   {
     id: 3,
     name: "Accounting",
     icon: <TbMathSymbols className="text-black" />,
-    path: "/todo",
+    path: <Link to="/todo" />,
   },
 ];
 
