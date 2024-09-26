@@ -18,7 +18,7 @@ const Form: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#242424] max-w-lg w-full h-auto mx-auto p-4 rounded-xl">
+    <div className="bg-[#242424] max-w-lg w-full h-auto mx-auto p-4 rounded-xl mt-10">
       <div className="p-1">
         <span className="text-white text-2xl font-semibold">TODO LIST</span>
       </div>

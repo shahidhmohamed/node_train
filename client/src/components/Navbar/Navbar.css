@@ -1,0 +1,84 @@
+/* Navbar styling */
+.navbar {
+  background: url(""), linear-gradient(135deg, #1e3a8a, #2563eb); /* Blue gradient with pattern */
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  height: 60px; /* Adjust the height of the navbar */
+}
+
+/* Water drop animation */
+@keyframes drop {
+  0% {
+    top: -50px;
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Generate multiple water drops */
+.drop {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 191, 255, 0.7); /* Water blue color */
+  border-radius: 50%;
+  animation: drop 4s infinite linear, ripple 4s infinite ease-in-out;
+}
+
+.drop:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.drop:nth-child(2) {
+  left: 25%;
+  animation-delay: 0.5s;
+}
+
+.drop:nth-child(3) {
+  left: 40%;
+  animation-delay: 1s;
+}
+
+.drop:nth-child(4) {
+  left: 55%;
+  animation-delay: 1.5s;
+}
+
+.drop:nth-child(5) {
+  left: 70%;
+  animation-delay: 2s;
+}
+
+.drop:nth-child(6) {
+  left: 85%;
+  animation-delay: 2.5s;
+}
+
+/* Optional dark overlay */
+.navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
