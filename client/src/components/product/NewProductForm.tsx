@@ -16,39 +16,45 @@ const NewProductForm: React.FC = () => {
     description: "",
     img: "",
   });
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
     if (file) {
-      setImageFile(file);
-      setImagePreview(URL.createObjectURL(file));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setNewProduct({ ...newProduct, img: base64String });
+        setImagePreview(base64String);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
   const removeImage = () => {
-    setImageFile(null);
+    setNewProduct({ ...newProduct, img: "" });
     setImagePreview(null);
   };
 
-  const createProduct = async () => {
-    const res = await axios.post(
-      "http://localhost:5000/api/products",
-      newProduct
-    );
-    setProducts([...products, res.data]);
-    setNewProduct({ name: "", description: "", img: "" });
+  const createProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/products",
+        newProduct
+      );
+      setProducts([...products, res.data]);
+      setNewProduct({ name: "", description: "", img: "" });
+      setImagePreview(null);
+    } catch (error) {
+      console.error("Error creating product", error);
+    }
   };
 
-  const formData = new FormData();
-  if (imageFile) {
-    formData.append("img", imageFile);
-  }
-
   return (
-    <div className="w-full h-[300px] bg-black mt-3 rounded-3xl">
-      <form className="max-w-md">
+    <div className="w-full h-full bg-black p-6">
+      <form onSubmit={createProduct} className="max-w-md">
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
@@ -110,7 +116,6 @@ const NewProductForm: React.FC = () => {
           </div>
         </div>
         <button
-          onClick={createProduct}
           type="submit"
           className="w-20 h-8 rounded bg-blue-900 text-white hover:bg-slate-800"
         >
