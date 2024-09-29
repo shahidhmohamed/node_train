@@ -5,6 +5,7 @@ interface Product {
   _id?: string;
   name: string;
   description: string;
+  item_code: string;
   img?: string;
 }
 
@@ -25,12 +26,13 @@ const ProductList: React.FC = () => {
   }, [products]);
 
   return (
-    <div className="w-full h-full bg-black p-5 text-white">
+    <div className="w-full h-full bg-gradient-to-br from-[#1e3a8a] to-[#2563eb] p-5 text-white">
       <table className="table-auto w-full text-left text-white">
         <thead>
           <tr className="border-b">
             <th className="px-4 py-2">Product Name</th>
             <th className="px-4 py-2">Description</th>
+            <th className="px-4 py-2">Item Code</th>
             <th className="px-4 py-2">Img</th>
             <th className="px-4 py-2">Action</th>
           </tr>
@@ -40,6 +42,7 @@ const ProductList: React.FC = () => {
             <tr key={product._id} className="border-b">
               <td className="px-4 py-2">{product.name}</td>
               <td className="px-4 py-2">{product.description}</td>
+              <td className="px-4 py-2">{product.item_code}</td>
               <td className="px-4 py-2">
                 {product.img && (
                   <img

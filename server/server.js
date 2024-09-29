@@ -38,38 +38,22 @@ app.delete('/api/items/:id', async (req, res) => {
 })
 
 
-// Product
-// const ProductSchema = new mongoose.Schema({
-//     name: String,
-//     description: String,
-//     img: String,
-// })
-
-// const Product = mongoose.model('Product', ProductSchema);
-
-// app.post('/api/products', async (req, res) => {
-//     const newProduct = new Product(req.body);
-//     await newProduct.save();
-//     res.json(newProduct);
-// })
-
-// app.get('/api/products', async (req, res) => {
-//     const products = await Product.find()
-//     res.json(products)
-// })
 // Product schema and model
 const ProductSchema = new mongoose.Schema({
     name: String,
     description: String,
-    img: String, // Base64 image string
+    item_code: String,
+    sales_price: String,
+    img: String,
+    internal_reference: String,
 });
 
 const Product = mongoose.model('Product', ProductSchema);
 
 // Routes
 app.post('/api/products', async (req, res) => {
-    const { name, description, img } = req.body; // Get base64 image
-    const newProduct = new Product({ name, description, img });
+    const { name, description, img, item_code, sales_price, internal_reference } = req.body; // Get base64 image
+    const newProduct = new Product({ name, description, img, item_code, sales_price, internal_reference });
     await newProduct.save();
     res.json(newProduct);
 });
