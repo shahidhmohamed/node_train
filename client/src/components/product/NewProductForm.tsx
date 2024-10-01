@@ -48,7 +48,7 @@ const NewProductForm: React.FC = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/products",
+        "http://localhost:5001/api/products",
         newProduct
       );
       setProducts([...products, res.data]);

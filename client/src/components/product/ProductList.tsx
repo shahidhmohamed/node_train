@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 interface Product {
-  _id?: string;
+  id?: string;
   name: string;
   description: string;
   item_code: string;
@@ -12,9 +12,14 @@ interface Product {
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
+  const deleteProduct = async (id: string) => {
+    await axios.delete(`http://localhost:5001/api/products/${id}`);
+    setProducts(products.filter((product) => product.id !== id));
+  };
+
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+      const res = await axios.get("http://localhost:5001/api/products");
       setProducts(res.data);
     } catch (error) {
       console.error("Error Fetching Products", error);
@@ -38,8 +43,8 @@ const ProductList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product._id} className="border-b">
+          {products.map((product, index) => (
+            <tr key={product.id || index} className="border-b">
               <td className="px-4 py-2">{product.name}</td>
               <td className="px-4 py-2">{product.description}</td>
               <td className="px-4 py-2">{product.item_code}</td>
@@ -52,9 +57,15 @@ const ProductList: React.FC = () => {
                   />
                 )}
               </td>
-              <td className="px-4 py-2">
+              <td className="px-4 py-2 space-x-3">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   Edit
+                </button>
+                <button
+                  onClick={() => deleteProduct(product.id!)}
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Delete
                 </button>
               </td>
             </tr>
